@@ -231,17 +231,15 @@ namespace MIS221_Starter_Code
 
         static void GiveChange(double paymentAmount, double totalAmount)
         {
-            if (paymentAmount < totalAmount)
+            double changeAmount = paymentAmount - totalAmount;
+            if (changeAmount < 0)
             {
-                Console.WriteLine("You did not pay enough to cover your bill.");
-
+                Console.WriteLine("You did not enter enough to pay your bill.");
             }
-            if (paymentAmount > totalAmount)
+            else
             {
-                double changeAmount = paymentAmount - totalAmount;
-                Console.WriteLine("Your change is " + string.Format("{0:0.00}", changeAmount) + ".");
+                Console.WriteLine("Your change is " + changeAmount + ".");
             }
-    
         }
 
         static void Goodbye()
