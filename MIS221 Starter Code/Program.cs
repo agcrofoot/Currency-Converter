@@ -73,7 +73,7 @@ namespace MIS221_Starter_Code
                                 case "Euros":
                                     ConvertToAmount(EURO, " Euros.");
                                     goto Menu;
-                                case "Indian Rupee":
+                                case "Indian Rupees":
                                     ConvertToAmount(IND_RUPEE, " Indian Rupees.");
                                     goto Menu;
                                 case "Japanese Yen":
@@ -164,7 +164,7 @@ namespace MIS221_Starter_Code
         {
             Console.WriteLine("Please enter the amount.");
             double startAmount = double.Parse(Console.ReadLine());
-            double endAmount = startAmount * exchangeRate;
+            double endAmount = startAmount / exchangeRate;
             Console.WriteLine("You have " + string.Format("{0:0.00}", endAmount) + customText);
         }
 
