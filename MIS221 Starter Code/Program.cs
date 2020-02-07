@@ -185,16 +185,12 @@ namespace MIS221_Starter_Code
         static double GetFoodTotal()
         {
             Console.WriteLine("Please enter the total cost of your food.");
-            double number = 0;
-            while (!double.TryParse(Console.ReadLine(), out number));
             return double.Parse(Console.ReadLine()); 
         }
 
         static double GetAlcoholTotal()
         {
             Console.WriteLine("Please enter the total cost of any alcohol.");
-            double number = 0;
-            while (!double.TryParse(Console.ReadLine(), out number)) ;
             return double.Parse(Console.ReadLine());
         }
 
@@ -230,8 +226,6 @@ namespace MIS221_Starter_Code
         static double GetPayment()
         {
             Console.WriteLine("Please enter your payment amount.");
-            double number = 0;
-            while (!double.TryParse(Console.ReadLine(), out number)) ;
             return double.Parse(Console.ReadLine());
         }
 
