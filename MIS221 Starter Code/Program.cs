@@ -27,33 +27,39 @@ namespace MIS221_Starter_Code
             switch (option)
             {
                 //Convert Currency
-                case "Convert Currencies":
+                case "1":
                 Convert:
                     string conversion = GetConvert();
                     switch (conversion)
                     {
                         //Convert to USD
-                        case "to":
+                        case "1":
                         ToUSD:
                             string foreign = ConvertPrompt("from");
                             switch (foreign)
                             {
-                                case "Canadian Dollars":
+                                //Canadian Dollars
+                                case "1":
                                     ConvertFromAmount(CAN_DOLLAR, " USD.");
                                     goto Menu;
-                                case "Euros":
+                                //Euros
+                                case "2":
                                     ConvertFromAmount(EURO, " USD.");
                                     goto Menu;
-                                case "Indian Rupees":
+                                //Indian Rupees
+                                case "3":
                                     ConvertFromAmount(IND_RUPEE, " USD.");
                                     goto Menu;
-                                case "Japanese Yen":
+                                //Japanese Yen
+                                case "4":
                                     ConvertFromAmount(JAP_YEN, " USD.");
                                     goto Menu;
-                                case "Mexican Pesos":
+                                //Mexican Pesos
+                                case "5":
                                     ConvertFromAmount(MEX_PESO, " USD.");
                                     goto Menu;
-                                case "British Pounds":
+                                //British Pounds
+                                case "6":
                                     ConvertFromAmount(BRIT_POUND, " USD.");
                                     goto Menu;
                                 default:
@@ -62,27 +68,33 @@ namespace MIS221_Starter_Code
                             }
 
                         //Convert from USD
-                        case "from":
+                        case "2":
                         FromUSD:
                             string dollars = ConvertPrompt("to");
                             switch (dollars)
                             {
-                                case "Canadian Dollars":
+                                //Canadian Dollars
+                                case "1":
                                     ConvertToAmount(CAN_DOLLAR, " Canadian Dollars.");
                                     goto Menu;
-                                case "Euros":
+                                //Euros
+                                case "2":
                                     ConvertToAmount(EURO, " Euros.");
                                     goto Menu;
-                                case "Indian Rupees":
+                                //Indian Rupees
+                                case "3":
                                     ConvertToAmount(IND_RUPEE, " Indian Rupees.");
                                     goto Menu;
-                                case "Japanese Yen":
+                                //Japanese Yen
+                                case "4":
                                     ConvertToAmount(JAP_YEN, " Japanese Yen.");
                                     goto Menu;
-                                case "Mexican Pesos":
+                                //Mexican Pesos
+                                case "5":
                                     ConvertToAmount(MEX_PESO, " Mexican Pesos.");
                                     goto Menu;
-                                case "British Pounds":
+                                //British Pounds
+                                case "6":
                                     ConvertToAmount(BRIT_POUND, "British Pounds.");
                                     goto Menu;
                                 default:
@@ -94,8 +106,8 @@ namespace MIS221_Starter_Code
                             goto Convert;
                     }
                 //Restaurant POS
-                case "Restaurant POS":
-                    double foodTotal = GetFoodTotal();
+                case "2":
+                    double foodTotal = GetFoodTotal();               
                     double alcoholTotal = GetAlcoholTotal();
                     double mealTotal = GetMealTotal(foodTotal, alcoholTotal);
                     double mealTax = GetMealTax(mealTotal);
@@ -107,7 +119,7 @@ namespace MIS221_Starter_Code
                     goto Menu;
 
                 //Exit
-                case "Exit":
+                case "3":
                     Goodbye();
                     Console.ReadKey();
                     break;
@@ -126,12 +138,12 @@ namespace MIS221_Starter_Code
         //Menu
         static void WelcomeMenu()
         {
-            Console.WriteLine("Welcome to the Menu. Please select one of the options by typing it below.");
+            Console.WriteLine("Welcome to the Menu. Please select the application you wish to use.");
         }
 
         static string MenuOptions()
         {
-            Console.WriteLine("Convert Currencies, Restaurant POS, Exit");
+            Console.WriteLine("For Converting Currency, please type '1'. For Restaurant POS, please type '2'. To Exit the program, type '3'.");
             return Console.ReadLine();
         }
 
@@ -144,12 +156,12 @@ namespace MIS221_Starter_Code
         //Convert to Dollars
         static string GetConvert()
         {
-            Console.WriteLine("Would you like to convert to USD (enter 'to'), or from USD? (enter 'from')");
+            Console.WriteLine("To convert to USD from another currency, please type '1'. To convert to a foreign currency from USD, please type '2'.");
             return Console.ReadLine();
         }
         static string ConvertPrompt(string customText)
         {
-            Console.WriteLine("Are you converting " + customText + " Canadian Dollars, Euros, Indian Rupees, Japanese Yen, Mexican Pesos, or British Pounds?");
+            Console.WriteLine("If you would like to convert " + customText + " Canadian Dollars, type '1'. Euros, type '2'. Indian Rupees, type '3'. Japanese Yen, type '4'. Mexican Pesos, type '5'. Or British Pounds, type '6'.");
             return Console.ReadLine();
         }
         static void ConvertFromAmount(double exchangeRate, string customText)
@@ -168,12 +180,22 @@ namespace MIS221_Starter_Code
             Console.WriteLine("You have " + string.Format("{0:0.00}", endAmount) + customText);
         }
 
-        
+
         //Restaurant POS
-        static double GetFoodTotal()
+        private static double GetFoodTotal()
         {
+        GetFood:
             Console.WriteLine("Please enter the total cost of your food.");
-            return double.Parse(Console.ReadLine());
+            double number = 0;
+            if (!double.TryParse(Console.ReadLine(), out number))
+            {
+                return double.Parse(Console.ReadLine());
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid number.");
+                goto GetFood;
+            }
         }
 
         static double GetAlcoholTotal()
